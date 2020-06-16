@@ -25,9 +25,12 @@ get('a.b',{a:{b:null}}) output: null
  */
 
  function get(key, obj){
+    
+    // 错误状态下的返回值
+    const errorMessage = undefined
 
     // 判断key和obj类型
-    if(typeof key !== 'string' || isObject(obj) !== true){return undefined}
+    if(typeof key !== 'string' || isObject(obj) !== true){return errorMessage}
 
     // 字符串转数组
     const keyArr = key.split('.');
@@ -37,7 +40,7 @@ get('a.b',{a:{b:null}}) output: null
     for(let i = 0; i < keyArr.length; i++){
       if (!isObject(obj)) return
       let currentKey = keyArr[i];
-      obj = inOwnProperty(obj,currentKey) ? obj[currentKey] : undefined
+      obj = inOwnProperty(obj,currentKey) ? obj[currentKey] : errorMessage
     }
     return obj
 
