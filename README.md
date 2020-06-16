@@ -26,11 +26,8 @@ get('a.b',{a:{b:null}}) output: null
 
  function get(key, obj){
     
-    // 错误状态下的返回值
-    const errorMessage = undefined
-
     // 判断key和obj类型
-    if(typeof key !== 'string' || key.length <= 0 || isObject(obj) !== true ){return errorMessage}
+    if(typeof key !== 'string' || key.length <= 0 || !isObject(obj)){return undefined}
 
     // 字符串转数组
     const keyArr = key.split('.');
@@ -38,9 +35,13 @@ get('a.b',{a:{b:null}}) output: null
     // 循环获取object深层对象
     // 需要注意原型链中的属性
     for(let i = 0; i < keyArr.length; i++){
-      if (!isObject(obj)) return
+      if (!isObject(obj)) break
       let currentKey = keyArr[i];
-      obj = inOwnProperty(obj,currentKey) ? obj[currentKey] : errorMessage
+      if(inOwnProperty(obj,currentKey)){
+        obj = obj[currentKey]
+      }else{
+        return undefined
+      }
     }
     return obj
 
@@ -50,11 +51,11 @@ get('a.b',{a:{b:null}}) output: null
 const _toString = Object.prototype.toString
 
 function isObject(obj){
-    return _toString.call(obj) === `[object Object]`
+    return _toString.call(obj) === '[object Object]'
 }
 
-function inOwnProperty(obj={},key){
-    return obj.hasOwnProperty(`${key}`)
+function inOwnProperty(obj,key){
+    return obj.hasOwnProperty(key)
 }
 
 ```
