@@ -30,7 +30,7 @@ get('a.b',{a:{b:null}}) output: null
     const errorMessage = undefined
 
     // 判断key和obj类型
-    if(typeof key !== 'string' || isObject(obj) !== true){return errorMessage}
+    if(typeof key !== 'string' || key.length <= 0 || isObject(obj) !== true ){return errorMessage}
 
     // 字符串转数组
     const keyArr = key.split('.');
