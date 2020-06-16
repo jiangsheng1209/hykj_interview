@@ -36,7 +36,7 @@ get('a.b',{a:{b:null}}) output: null
     const keyArr = key.split('.');
 
     // 循环获取object深层对象
-    // 这里循环没有用for...in原则上不会查找原型链中的属性,但还需要过滤__proto__
+    // 需要注意原型链中的属性
     for(let i = 0; i < keyArr.length; i++){
       if (!isObject(obj)) return
       let currentKey = keyArr[i];
