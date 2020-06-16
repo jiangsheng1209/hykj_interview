@@ -13,6 +13,8 @@ get('a.__proto__',{a:{}}) output: undefined
 
 get('a.b',{a:{b:null}}) output: null
 
+get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
+
 ```
 
 # 解题
