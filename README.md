@@ -68,5 +68,6 @@ function inOwnProperty(obj,key){
   1、代码编写简洁度 明确返回Boolean值得地方不应该出现类似!==true的逻辑 
   2、错误的默认参数会导致报错信息被掩盖
   3、在明确是String类型不需要使用字符串模板位置使用字符串模板
-  4、for循环 判断中 return 和 break 使用混淆
+  4、for循环判断中return 和 break 使用混淆
+  5、自测覆盖不全面
 ```
