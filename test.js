@@ -15,7 +15,7 @@ function get(key, obj){
     // 循环获取object深层对象
     // 需要注意原型链中的属性
     for(let i = 0, currentKey; currentKey = keyArr[i++];){
-      
+
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
       }else{
@@ -59,4 +59,7 @@ console.log('output',get('a.b.c',{a:{b:[1,2,3]}}))
 
 console.log("get('a.b.c',{})")
 console.log('output',get('a.b.c',{}))
+
+console.log("get('',{})")
+console.log('output',get('',{}))
 

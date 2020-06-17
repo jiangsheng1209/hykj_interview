@@ -87,6 +87,6 @@ function inOwnProperty(obj,key){
 
   cd hykj_interview
 
-  node text.js
+  node test.js
 
 ```
