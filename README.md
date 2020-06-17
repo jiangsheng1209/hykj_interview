@@ -29,22 +29,22 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
  function get(key, obj){
     
     // 判断key和obj类型
-    if(typeof key !== 'string' || key.length <= 0 || !isObject(obj)){return undefined}
+    if(typeof key !== 'string' || !!key || !isObject(obj)){return undefined}
 
     // 字符串转数组
     const keyArr = key.split('.')
 
     // 循环获取object深层对象
     // 需要注意原型链中的属性
-    for(let i = 0; i < keyArr.length; i++){
+    for(let i = 0, currentKey; currentKey = keyArr[i++];){
       if (!isObject(obj)) break
-      const currentKey = keyArr[i]
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
       }else{
         return undefined
       }
     }
+
     return obj
 
  }
@@ -82,6 +82,7 @@ function inOwnProperty(obj,key){
 ### 测试
 
 ```
+
   git clone https://github.com/jiangsheng1209/hykj_interview.git
 
   cd hykj_interview
