@@ -38,7 +38,7 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
     // 需要注意原型链中的属性
     for(let i = 0; i < keyArr.length; i++){
       if (!isObject(obj)) break
-      let currentKey = keyArr[i]
+      const currentKey = keyArr[i]
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
       }else{
@@ -62,12 +62,30 @@ function inOwnProperty(obj,key){
 
 ```
 
-# 代码中暴露出的问题
+### 代码中暴露出的问题
 
 ```
   1、代码编写简洁度 明确返回Boolean值的地方不应该出现类似!==true的逻辑判断
+
   2、错误的默认参数会导致报错信息被掩盖
+
   3、在明确是String类型不需要使用字符串模板位置使用字符串模板
+
   4、for循环判断中return 和 break 使用混淆
-  5、自测覆盖不全面
+
+  5、for循环中在获得所需结果后没有及时中断执行造成性能浪费
+
+  6、自测覆盖不全面
+
+```
+
+### 测试
+
+```
+  git clone https://github.com/jiangsheng1209/hykj_interview.git
+
+  cd hykj_interview
+
+  node text.js
+
 ```
