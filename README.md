@@ -32,13 +32,13 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
     if(typeof key !== 'string' || key.length <= 0 || !isObject(obj)){return undefined}
 
     // 字符串转数组
-    const keyArr = key.split('.');
+    const keyArr = key.split('.')
 
     // 循环获取object深层对象
     // 需要注意原型链中的属性
     for(let i = 0; i < keyArr.length; i++){
       if (!isObject(obj)) break
-      let currentKey = keyArr[i];
+      let currentKey = keyArr[i]
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
       }else{
