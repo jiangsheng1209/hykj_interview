@@ -37,6 +37,7 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
     // 循环获取object深层对象
     // 需要注意原型链中的属性
     for(let i = 0, currentKey; currentKey = keyArr[i++];){
+      //注意:每次在循环体内部取到的 i 是 ++ 后的值,所以在使用索引的时候需要 -1.
       
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
@@ -76,6 +77,12 @@ function inOwnProperty(obj,key){
   5、for循环中在获得所需结果后没有及时中断执行造成性能浪费
 
   6、自测覆盖不全面
+
+  7、for循环空间复杂度造成不必要的性能浪费
+
+  (let i = 0; i < length; i++) 时间空间复杂度O[n^2] 
+  (let i = 0, len = length; i < length; i++) 时间空间复杂度O[n+1]
+  (let i = 0, item; item = keys[i++];) 时间空间复杂度O[n]
 
 ```
 
