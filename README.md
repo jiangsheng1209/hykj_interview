@@ -29,7 +29,7 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
  function get(key, obj){
     
     // 判断key和obj类型
-    if(typeof key !== 'string' || !!key || !isObject(obj)){return undefined}
+    if(typeof key !== 'string' || !key || !isObject(obj)){return undefined}
 
     // 字符串转数组
     const keyArr = key.split('.')
