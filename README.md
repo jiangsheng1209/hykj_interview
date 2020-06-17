@@ -37,16 +37,16 @@ get('a.b.c',{a:{b:[1,2,3]}}) output: [1,2,3]
     // 循环获取object深层对象
     // 需要注意原型链中的属性
     for(let i = 0, currentKey; currentKey = keyArr[i++];){
-      if (!isObject(obj)) break
+      
       if(inOwnProperty(obj,currentKey)){
         obj = obj[currentKey]
       }else{
         return undefined
       }
+
+      if (!isObject(obj)) return obj
+
     }
-
-    return obj
-
  }
 
 // utils
